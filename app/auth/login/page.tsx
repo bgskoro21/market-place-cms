@@ -1,6 +1,7 @@
-import LoginForm from "@/modules/login";
+import LoginForm from "@/modules/auth/login";
 import { loginAction } from "./action";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "BagasShop - Login",
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function LoginPage() {
-  return <LoginForm loginAction={loginAction} />;
+  return (
+    <>
+      <LoginForm loginAction={loginAction} />
+    </>
+  );
 }

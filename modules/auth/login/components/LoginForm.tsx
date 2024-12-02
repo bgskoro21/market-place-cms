@@ -4,7 +4,10 @@ import Alert from "@/components/Alert";
 import Button from "@/components/Button";
 import InputField from "@/components/InputField";
 import Label from "@/components/Label";
+import Link from "next/link";
 import { useActionState } from "react";
+import Title from "../../components/Title";
+import LinkAuth from "../../components/LinkAuth";
 
 interface LoginFormProps {
   loginAction: (prevState: any, payload: FormData) => any;
@@ -14,10 +17,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ loginAction }) => {
   const [state, formAction, isPending] = useActionState(loginAction, undefined);
 
   const errors = state?.errors || {};
-  console.log(state);
   return (
     <>
-      <h1 className="text-2xl font-semibold text-center mb-6">Login</h1>
+      <Title title="LOGIN" />
       {state != undefined && state.statusCode != 200 && typeof state.errors == "string" && <Alert status="error" message={state.errors} />}
       <form action={formAction} className="space-y-4">
         <div>
@@ -30,6 +32,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ loginAction }) => {
         </div>
         <Button type="submit" loading={isPending} label="LOGIN" />
       </form>
+      <LinkAuth to="/auth/register" title="Don't have an account?" linkTitle="Sign Up" />
     </>
   );
 };
